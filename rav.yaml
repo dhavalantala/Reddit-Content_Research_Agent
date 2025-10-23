@@ -1,0 +1,22 @@
+scripts:
+  notebook: jupyter notebook
+  install: pip install -r requirements.txt
+  makemigrations:
+    - cd src
+    - ../reddit_env/bin/python manage.py migrate
+  migrate:
+    - cd src
+    - ../reddit_env/bin/python manage.py migrate
+  worker:
+    - cd src
+    - ../reddit_env/bin/celery -A webscraping worker --beat -l info
+  clean: 
+    - reddit_env/bin/pre-commit run --all-files
+  docker_status:
+    - docker compose ps
+  docker_up:
+    - docker compose up -d
+  docker_down:
+    - docker compose down
+  # docker_down_delete:
+  #   - docker compose down -v
