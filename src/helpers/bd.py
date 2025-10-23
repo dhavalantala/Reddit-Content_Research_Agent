@@ -20,6 +20,7 @@ def perform_scrape_snapshot(
         num_of_posts: int = 20, 
         raw=False, 
         use_webhook=True,
+        demo=False,
         sort_by_time="This Week"
     ):
     # BrightDataSnapshot = apps.get_model("snapshots", "BrightDataSnapshot")
@@ -33,6 +34,8 @@ def perform_scrape_snapshot(
     	"discover_by": "subreddit_url",
     	"limit_per_input": "100",
     }
+    # if demo:  ## Save Cost
+    #     return
     if use_webhook:
         auth_key = settings.BRIGHT_DATA_WEBHOOK_HANDLER_SECRET_KEY
         webhook_params = {
