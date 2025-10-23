@@ -30,7 +30,19 @@ SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DJANGO_DEBUG") == "1"
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "pyhungrypy.com",
+    ".pyhungrypy.com",  # allow all subdomains
+    "127.0.0.1",
+    "localhost",
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.pyhungrypy.com",
+    "https://pyhungrypy.com",
+    "http://127.0.0.1:8000",
+    "http://localhost:8000",
+]
 
 if DEBUG:
     ALLOWED_HOSTS.append("*")
@@ -182,5 +194,20 @@ QSTASH_URL=os.environ.get("QSTASH_URL")
 QSTASH_TOKEN=os.environ.get("QSTASH_TOKEN")
 QSTASH_CURRENT_SIGNING_KEY=os.environ.get("QSTASH_CURRENT_SIGNING_KEY")
 QSTASH_NEXT_SIGNING_KEY=os.environ.get("QSTASH_NEXT_SIGNING_KEY")
-DJANGO_QSTASH_DOMAIN=os.environ.get("DJANGO_QSTASH_DOMAIN")
+DJANGO_QSTASH_DOMAIN=os.environ.get(
+    "DJANGO_QSTASH_DOMAIN",
+    "http://127.0.0.1:8000" if DEBUG else "https://pyhungrypy.com"
+)
 DJANGO_QSTASH_WEBHOOK_PATH=os.environ.get("DJANGO_QSTASH_WEBHOOK_PATH") or "/qstash/webhook/"
+
+
+###### Bright Data Config
+
+BRIGHT_DATA_REDDIT_SCRAPER_API_KEY = os.environ.get("BRIGHT_DATA_REDDIT_SCRAPER_API_KEY")
+BRIGHT_DATA_SERP_API_KEY=  os.environ.get("BRIGHT_DATA_SERP_API_KEY")
+BRIGHT_DATA_WEBHOOK_HANDLER_SECRET_KEY = os.environ.get("BRIGHT_DATA_WEBHOOK_HANDLER_SECRET_KEY")
+
+
+
+##### LLM Config
+GOOGLE_GEMINI_API_KEY=os.environ.get('GOOGLE_GEMINI_API_KEY')

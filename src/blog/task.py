@@ -2,7 +2,7 @@ from celery import shared_task
 from django_qstash import stashed_task
 
 
-@stashed_task
+@shared_task
 def hello_world(name: str, age: int = None, activity: str = None):
     if age is None:
         print(f"Hello {name}! I see you're {activity}.")
